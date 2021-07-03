@@ -1,22 +1,15 @@
-import { useCurrentPosition } from 'react-use-geolocation';
-import React, { useState, useEffect,  } from 'react';
+import useGeolocation from 'react-use-geolocation';
+import React, { useState } from 'react';
 
 const Location = () => {
-    const [position, error] = useCurrentPosition();
+    const [position, error] = useGeolocation();
     const [zipcode, newZipcode] = useState('');
     let myLatitude;
     let myLongitude;
 
-    if (!position && !error) {
-        return <p>Waiting</p>;
-    }
-
-    if (error) {
-        return <p>{error.message}</p>;
-    }
-
-    myLatitude = {position.coords.latitude};
-    myLongitude = {position.coords.longitude};
+    
+    myLatitude = position.latitude;
+    myLongitude = position.longitude;
 
     const newZipcode = require('latlng-to-zip');
     newZipcode({myLatitude, myLongitude}, key)
