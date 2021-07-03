@@ -6,6 +6,7 @@ const GitHubCommits = (props) => {
     const [message, setMessage] = useState('');
 
     const displayData = (commitData) => {
+        console.log(commitData);
         for (let i = 0; i < commitData.length; i++) {
             console.log(commitData[i].commit.author.name)
             console.log(commitData[i].commit.author.date)
@@ -14,7 +15,7 @@ const GitHubCommits = (props) => {
     }
 
     useEffect(() => {
-        fetch('https://api.github.com/repos/cblake35/react-team-project/commits')
+        fetch('https://api.github.com/repos/cblake35/react-team-project/commits/Chris')
             .then((res) => res.json())
             .then((data) => displayData(data))
     }, [])
