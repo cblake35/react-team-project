@@ -7,6 +7,9 @@ const Weather = (props) => {
     const lat =  props.lat;
     const lon = props.lon;
     const [ results, setResults ] = useState([]);
+    const [ name, setName ] = useState('Please wait');
+    const [ temp, setTemp ] = useState('');
+    const [ weather, setWeather] = useState('');
 
     useEffect(() => {
         let url = `${baseURL}lat=${lat}&lon=${lon}&units=imperial&appid=${key}`;
@@ -15,22 +18,30 @@ const Weather = (props) => {
         .then((res) => res.json())
         .then((data) => setResults(data))
         .catch((err) => console.log(err))
-    }, []);
+    }, [])
+
+    console.log(results)
+    setName(results.name);
+    setTemp(results.main.temp);
+    setWeather(results.weather.main);
     
-    console.log(results);
-
-
     return (
         <div>
             <p>
-                You are in {results.name}.
-            </p>
-            {/* <p>
-                It is currently {results.main.temp} degrees, and feels like {results.main.feels_like}.
+                {props.lat}
             </p>
             <p>
-                The weather is {results.weather.main}. 
-            </p> */}
+                {props.lon}
+            </p>
+            <p>
+                {name}
+            </p>
+            <p>
+                {temp}
+            </p>
+            <p>
+                {weather}
+            </p>
         </div>
     )
 }

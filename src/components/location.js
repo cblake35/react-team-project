@@ -4,7 +4,7 @@ import Weather from './Weather';
 const Location = () => {
     const [lat, setLat] = useState('');
     const [lon, setLon] = useState('');
-
+    
     const componentDidMount = () => {
         navigator.geolocation.getCurrentPosition(function(position) {
             setLat(position.coords.latitude);
@@ -15,7 +15,7 @@ componentDidMount();
 
 return (
     <div>
-        <Weather lat={lat} lon={lon}/>
+        <Weather lat={lat} lon={lon} />
     </div>
 )
 }
