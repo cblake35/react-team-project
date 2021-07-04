@@ -1,37 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 
-const GitHubCommits = (props) => {
-    const [name, setName] = useState('');
-    const [date, setDate] = useState('');
-    const [message, setMessage] = useState('');
-
-    const displayData = (commitData) => {
-        console.log(commitData);
-        for (let i = 0; i < commitData.length; i++) {
-            console.log(commitData[i].commit.author.name)
-            console.log(commitData[i].commit.author.date)
-            console.log(commitData[i].commit.message)
-        }
-    }
+const GitHubCommits = () => {
+    const [results, setResults] = useState([]);
 
     useEffect(() => {
-        fetch('https://api.github.com/repos/cblake35/react-team-project/commits/Chris')
+        fetch('https://api.github.com/repos/cblake35/react-team-project/commits?sha=Chris')
             .then((res) => res.json())
-            .then((data) => displayData(data))
+            .then((data) => setResults(data))
     }, [])
-
-
 
     return (
         <div className='mainDiv'>
             <div className='componentBody'>
                 <h1 className='commitHeading'>Commits</h1>
-                <div>
-                    <h3>Name</h3>
-                    <div>
-                        <p>Message</p>
-                        <p>Date</p>
-                    </div>
+                <div className='commitWrapper'>
+                    {console.log(results),
+                        results.map(result => {
+                            return (
+                                <div className='commitCard'>
+                                    <h3>{result.commit.author.name}</h3>
+                                    <p className='commitMsg'>{result.commit.message}</p>
+                                    <p className='commitDate'>{result.commit.author.date}</p>
+                                </div>
+                            )
+                        })}
                 </div>
             </div>
         </div>
