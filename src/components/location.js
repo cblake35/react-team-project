@@ -1,26 +1,23 @@
-import useGeolocation from 'react-use-geolocation';
 import React, { useState } from 'react';
+import Weather from './Weather';
 
 const Location = () => {
-    const [position, error] = useGeolocation();
-    const [zipcode, newZipcode] = useState('');
-    let myLatitude;
-    let myLongitude;
+    const [lat, setLat] = useState('');
+    const [lon, setLon] = useState('');
 
-    
-    myLatitude = position.latitude;
-    myLongitude = position.longitude;
+    const componentDidMount = () => {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            setLat(position.coords.latitude);
+            setLon(position.coords.longitude);
+        });
+}
+componentDidMount();
 
-    const newZipcode = require('latlng-to-zip');
-    newZipcode({myLatitude, myLongitude}, key)
-    .then(zipcode => zipcode)
-    .catch(err => err);
-
-    return (
-        <div>
-            <p>Zip code: {{zipcode}}</p>
-        </div>
-    );
+return (
+    <div>
+        <Weather lat={lat} lon={lon}/>
+    </div>
+)
 }
 
 export default Location;
