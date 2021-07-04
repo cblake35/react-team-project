@@ -38,7 +38,10 @@
 }
 
 
-/* Components */
+/* GitHub Component */
+.commitHeading {
+  margin-bottom: 40px;
+}
 
 .componentBody {
   padding-left: 20px;
@@ -52,6 +55,7 @@
 
 .mainDiv {
   height: 80vh;
+  position: relative !important;
 }
 
 .commitCard {
@@ -64,6 +68,30 @@
 .commitCard h3 {
   background-color: lightgray;
   width: 100%;
+}
+
+.buttonContainer {
+  position: fixed;
+  bottom: 100px;
+  width: 300px;
+  left: 50%;
+  margin-left: -150px !important;
+}
+
+.commitCard {
+  display: block;
+}
+
+.commitMsg {
+  display: block;
+}
+
+.commitDate {
+  display: block;
+}
+
+.buttonContainer Button {
+  margin: 10px 20px 10px 20px;
 }
 
 

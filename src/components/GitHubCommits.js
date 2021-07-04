@@ -11,7 +11,7 @@ const GitHubCommits = () => {
     let counter = pageNumber;
 
     useEffect(() => {
-        fetch(`https://api.github.com/repos/cblake35/react-team-project/commits?sha=development&page=${pageNumber}&per_page=2`)
+        fetch(`https://api.github.com/repos/cblake35/react-team-project/commits?sha=development&page=${pageNumber}&per_page=10`)
             .then((res) => res.json())
             .then((data) => setResults(data))
     }, [pageNumber])
@@ -22,23 +22,23 @@ const GitHubCommits = () => {
             return;
         } else {
             setPageNumber(counter - 1)
-            fetch(`https://api.github.com/repos/cblake35/react-team-project/commits?sha=development&page=${pageNumber}&per_page=2`)
+            fetch(`https://api.github.com/repos/cblake35/react-team-project/commits?sha=development&page=${pageNumber}&per_page=10`)
                 .then((res) => res.json())
                 .then((data) => setResults(data))
         }
     }
-
 
     const fetchNext = () => {
         if (counter > results.length) {
             return;
         } else {
             setPageNumber(counter + 1)
-            fetch(`https://api.github.com/repos/cblake35/react-team-project/commits?sha=development&page=${pageNumber}&per_page=2`)
+            fetch(`https://api.github.com/repos/cblake35/react-team-project/commits?sha=development&page=${pageNumber}&per_page=10`)
                 .then((res) => res.json())
                 .then((data) => setResults(data))
         }
     }
+
 
     return (
         <div className='mainDiv'>
@@ -47,21 +47,25 @@ const GitHubCommits = () => {
                 <Row className='commitWrapper'>
                     {console.log(results),
                         results.map(result => {
+                            let myDate = new Date(result.commit.author.date).toLocaleString('en-US', { timezone: 'America/New_York' }).split(',').shift();
+                            console.log(myDate);
                             return (
                                 <Col xs='6' md='4' lg='2' className='commitCard'>
                                     <h3>{result.commit.author.name}</h3>
                                     <p className='commitMsg'>{result.commit.message}</p>
-                                    <p className='commitDate'>{result.commit.author.date}</p>
+                                    <p className='commitDate'>{myDate}</p>
                                 </Col>
                             )
                         })}
                 </Row>
             </div>
-            {results.length >= 2
-                ? <div className='buttonContainer'>
-                    <Button onClick={fetchPrevious}>Previous</Button>
-                    <Button onClick={fetchNext}>Next</Button>
-                </div>
+            {results.length >= 10
+                ? <Row className='buttonContainer'>
+                    <Col>
+                        <Button onClick={fetchPrevious}>Previous</Button>
+                        <Button onClick={fetchNext}>Next</Button>
+                    </Col>
+                </Row>
                 : undefined
             }
 
