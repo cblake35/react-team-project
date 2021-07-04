@@ -39,8 +39,25 @@
 
 
 /* Components */
+.commitWrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .mainDiv {
-  height: 75vh;
+  height: 80vh;
+}
+
+.commitCard {
+  border: 1px rgb(56, 56, 56) solid;
+  padding: 0 !important;
+  margin: 20px 10px 20px 10px;
+  width: 250px !important;
+}
+
+.commitCard h3 {
+  background-color: lightgray;
+  width: 100%;
 }
 
 

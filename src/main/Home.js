@@ -1,4 +1,4 @@
-import React, {useEffects, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 const Home = (props) => {
     return(
@@ -11,3 +11,5 @@ const Home = (props) => {
 }
 
 export default Home;
+
+
