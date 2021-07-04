@@ -11,6 +11,7 @@ const Location = () => {
             setLon(position.coords.longitude);
         });
 }
+
 componentDidMount();
 
 return (
