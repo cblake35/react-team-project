@@ -39,9 +39,15 @@
 
 
 /* Components */
+
+.componentBody {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .commitWrapper {
   display: flex;
-  justify-content: center;
+  justify-content:space-evenly;
 }
 
 .mainDiv {
@@ -67,7 +73,11 @@
 .myFooter {
   display: flex;
   align-items: center;
-  background-color: grey;
-  height: 20vh
+  background-color: rgb(104, 104, 104);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 75px;
+  margin: 0 !important;
 }
 

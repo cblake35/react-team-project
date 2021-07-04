@@ -1,18 +1,44 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-    Container,
     Row,
-    Col 
+    Col,
+    Button
 } from 'reactstrap';
 
 const GitHubCommits = () => {
     const [results, setResults] = useState([]);
+    const [pageNumber, setPageNumber] = useState(1)
+    let counter = pageNumber;
 
     useEffect(() => {
-        fetch('https://api.github.com/repos/cblake35/react-team-project/commits?sha=Chris')
+        fetch(`https://api.github.com/repos/cblake35/react-team-project/commits?sha=development&page=${pageNumber}&per_page=2`)
             .then((res) => res.json())
             .then((data) => setResults(data))
-    }, [])
+    }, [pageNumber])
+
+
+    const fetchPrevious = () => {
+        if (counter === 1) {
+            return;
+        } else {
+            setPageNumber(counter - 1)
+            fetch(`https://api.github.com/repos/cblake35/react-team-project/commits?sha=development&page=${pageNumber}&per_page=2`)
+                .then((res) => res.json())
+                .then((data) => setResults(data))
+        }
+    }
+
+
+    const fetchNext = () => {
+        if (counter > results.length) {
+            return;
+        } else {
+            setPageNumber(counter + 1)
+            fetch(`https://api.github.com/repos/cblake35/react-team-project/commits?sha=development&page=${pageNumber}&per_page=2`)
+                .then((res) => res.json())
+                .then((data) => setResults(data))
+        }
+    }
 
     return (
         <div className='mainDiv'>
@@ -31,6 +57,14 @@ const GitHubCommits = () => {
                         })}
                 </Row>
             </div>
+            {results.length >= 2
+                ? <div className='buttonContainer'>
+                    <Button onClick={fetchPrevious}>Previous</Button>
+                    <Button onClick={fetchNext}>Next</Button>
+                </div>
+                : undefined
+            }
+
         </div>
     )
 }
