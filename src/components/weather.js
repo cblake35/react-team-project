@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
 
-const baseURL = 'api.openweathermap.org/data/2.5/weather?';
+const baseURL = 'https://api.openweathermap.org/data/2.5/weather?';
 const key = '1fda8e8934336996f687fcbc3a8d70a1';
 
 const Weather = (props) => {
-    const lat = props.lat
-    const lon = props.lon
-    const [ results, setResults ] = useState([]);
+    const lat =  props.lat;
+    const lon = props.lon;
+    const [ results, setResults ] = useState({});
 
     let url = `${baseURL}lat=${lat}&lon=${lon}&appid=${key}`;
     console.log(url);
@@ -14,10 +14,11 @@ const Weather = (props) => {
     useEffect(() => {
         fetch(url)
         .then((res) => res.json())
-        .then((data) => setResults(data))
-    }, []);
+        .then((data) => console.log(data))
+        .catch((err) => console.log(err))
+    });
     
-    console.log(results.data);
+    // console.log(results);
 
     return (
         <div>
