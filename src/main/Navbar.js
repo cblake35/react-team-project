@@ -10,6 +10,7 @@ import {
 } from 'reactstrap';
 import { Route, Link, Switch, } from 'react-router-dom';
 import Home from './Home';
+import Location from '../components/Location';
 import GitHubCommits from '../components/GitHubCommits';
 
 const MyNavBar = (props) => {
@@ -35,7 +36,7 @@ const MyNavBar = (props) => {
                             <NavLink><Link to='/'>Open Weather</Link></NavLink>
                             </NavItem>
                             <NavItem>
-                            <NavLink><Link to='/'>Ticket Master</Link></NavLink>
+                            <NavLink><Link to='/location'>Ticket Master</Link></NavLink>
                             </NavItem>
                             <NavItem>
                             <NavLink><Link to='/githubcommits'>GitHub Api</Link></NavLink>
@@ -49,7 +50,7 @@ const MyNavBar = (props) => {
                     <Route exact path='/'><Home /></Route>
                     <Route exact path='/'><Home /></Route>
                     <Route exact path='/'><Home /></Route>
-                    <Route exact path='/'><Home /></Route>
+                    <Route exact path='/location'><Location /></Route>
                     <Route exact path='/githubcommits'><GitHubCommits /></Route>
                 </Switch>
             </div>
