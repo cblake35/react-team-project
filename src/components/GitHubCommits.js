@@ -57,7 +57,7 @@ const GitHubCommits = () => {
                             )
                         })}
                 </Row>
-                {counter <= results.length
+                {counter >= 1
                     ? <Row className='buttonContainer'>
                         <Col>
                             <Button onClick={fetchPrevious}>Previous</Button>
