@@ -52,8 +52,8 @@ const GitHubCommits = () => {
                                 result.type === 'PushEvent' && result.payload.size === 1 ?
 
                                     <Col xs='6' md='4' lg='2' className='commitCard'>
-                                        <h3>{result.payload.commits[result.payload.size - 1].author.name}</h3>
-                                        <p className='commitMsg'>{result.payload.commits[result.payload.size - 1].message}</p>
+                                        <h3>{result.payload.commits[result.payload.commits.length - 1].author.name}</h3>
+                                        <p className='commitMsg'>{result.payload.commits[result.payload.commits.length - 1].message}</p>
                                         <p className='commitDate'>{myDate}</p>
 
                                     </Col>
@@ -61,8 +61,8 @@ const GitHubCommits = () => {
                                     : result.type === 'PushEvent' && result.payload.size > 1 ?
 
                                         <Col xs='6' md='4' lg='2' className='commitCard'>
-                                            <h3>{result.payload.commits[result.payload.size - 1].author.name}</h3>
-                                            <p className='commitMsg'>{result.payload.commits[result.payload.size - 1].message}</p>
+                                            <h3>{result.payload.commits[result.payload.commits.length - 1].author.name}</h3>
+                                            <p className='commitMsg'>{result.payload.commits[result.payload.commits.length - 1].message}</p>
                                             <p className='commitDate'>{myDate}</p>
                                         </Col>
 
