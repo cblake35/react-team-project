@@ -5,8 +5,9 @@ const baseURL = 'https://app.ticketmaster.com/discovery/v2/events?';
 const key = 'eKo8zPdO6gxnKsmhksDmZ0d2EWLGITk2';
 
 const TicketMaster = (props) => {
-    const lat = props.lat;
-    const lon = props.lon;
+    let info = JSON.parse(window.localStorage.getItem('coordinates'));
+    let lat = info[0][0];
+    let lon = info[0][1];
     const latlong = lat + ',' + lon;
     console.log(latlong);
     // const [ events, setEvents] = useState('');
