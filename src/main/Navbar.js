@@ -13,6 +13,7 @@ import Home from './Home';
 import Location from '../components/Location';
 import GitHubCommits from '../components/GitHubCommits';
 
+
 const MyNavBar = (props) => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -21,25 +22,20 @@ const MyNavBar = (props) => {
     return (
         <div className='mainNavDiv'>
             <div>
-                <Navbar color="light" light expand="md">
-                    <NavbarBrand href="/">Fantastic Four</NavbarBrand>
+                <Navbar className='myNavBar' color="light" light expand="md">
+                    <NavbarBrand className='navbarbrand' href="/">Fantastic Four</NavbarBrand>
                     <NavbarToggler onClick={toggle} />
                     <Collapse isOpen={isOpen} navbar>
                         <Nav className="mr-auto" navbar>
                             <NavItem>
-                                <NavLink><Link to='/'>Home</Link></NavLink>
-                            </NavItem>
-                            <NavItem>
-                            <NavLink><Link to='/'>NASA Api</Link></NavLink>
-                            </NavItem>
-                            <NavItem>
-                            <NavLink><Link to='/'>Open Weather</Link></NavLink>
+                                <NavLink className='navlink'><Link to='/'>Home</Link></NavLink>
                             </NavItem>
                             <NavItem>
                             <NavLink><Link to='/location'>Ticket Master</Link></NavLink>
                             </NavItem>
                             <NavItem>
                             <NavLink><Link to='/githubcommits'>GitHub Api</Link></NavLink>
+                                <NavLink className='navlink'><Link to='/githubcommits'>GitHub Api</Link></NavLink>
                             </NavItem>
                         </Nav>
                     </Collapse>
