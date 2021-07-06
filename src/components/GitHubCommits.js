@@ -11,7 +11,7 @@ const GitHubCommits = () => {
     let counter = pageNumber;
 
     useEffect(() => {
-        fetch(`https://api.github.com/networks/cblake35/react-team-project/events?page=${pageNumber}&per_page=20`)
+        fetch(`https://api.github.com/networks/cblake35/react-team-project/events?page=${pageNumber}&per_page=25`)
             .then((res) => res.json())
             .then((data) => setResults(data))
     }, [pageNumber])
@@ -22,18 +22,18 @@ const GitHubCommits = () => {
             return;
         } else {
             setPageNumber(counter - 1)
-            fetch(`https://api.github.com/networks/cblake35/react-team-project/events?page=${pageNumber}&per_page=20`)
+            fetch(`https://api.github.com/networks/cblake35/react-team-project/events?page=${pageNumber}&per_page=25`)
                 .then((res) => res.json())
                 .then((data) => setResults(data))
         }
     }
 
     const fetchNext = () => {
-        if (results.length < 20) {
+        if (results.length < 25) {
             return;
         } else {
             setPageNumber(counter + 1)
-            fetch(`https://api.github.com/networks/cblake35/react-team-project/events?page=${pageNumber}&per_page=20`)
+            fetch(`https://api.github.com/networks/cblake35/react-team-project/events?page=${pageNumber}&per_page=25`)
                 .then((res) => res.json())
                 .then((data) => setResults(data))
         }
