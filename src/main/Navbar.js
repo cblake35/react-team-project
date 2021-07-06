@@ -34,7 +34,7 @@ const MyNavBar = (props) => {
                             <NavLink><Link to='/'>NASA Api</Link></NavLink>
                             </NavItem>
                             <NavItem>
-                            <NavLink><Link to='/location'>Open Weather</Link></NavLink>
+                            <NavLink><Link to='/'>Open Weather</Link></NavLink>
                             </NavItem>
                             <NavItem>
                             <NavLink><Link to='/'>Ticket Master</Link></NavLink>
@@ -50,7 +50,7 @@ const MyNavBar = (props) => {
                 <Switch>
                     <Route exact path='/'><Home /></Route>
                     <Route exact path='/'><Home /></Route>
-                    <Route exact path='/location'><Location /></Route>
+                    <Route exact path='/'><Home /></Route>
                     <Route exact path='/'><Home /></Route>
                     <Route exact path='/githubcommits'><GitHubCommits /></Route>
                 </Switch>

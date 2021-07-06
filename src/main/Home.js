@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
+import Weather from '../components/Weather';
 
-const Home = (props) => {
-    return(
+const Home = () => {
+
+    return (
         <div className='mainDiv'>
             <div className='componentBody'>
-                <p>I'm Home</p>
+                <Weather />
             </div>
         </div>
     )
