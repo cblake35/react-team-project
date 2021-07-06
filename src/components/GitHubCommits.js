@@ -11,7 +11,7 @@ const GitHubCommits = () => {
     let counter = pageNumber;
 
     useEffect(() => {
-        fetch(`https://api.github.com/repos/cblake35/react-team-project/commits?sha=development&page=${pageNumber}&per_page=9`)
+        fetch(`https://api.github.com/networks/cblake35/react-team-project/events?page=${pageNumber}&per_page=20`)
             .then((res) => res.json())
             .then((data) => setResults(data))
     }, [pageNumber])
@@ -22,18 +22,18 @@ const GitHubCommits = () => {
             return;
         } else {
             setPageNumber(counter - 1)
-            fetch(`https://api.github.com/repos/cblake35/react-team-project/commits?sha=development&page=${pageNumber}&per_page=9`)
+            fetch(`https://api.github.com/networks/cblake35/react-team-project/events?page=${pageNumber}&per_page=20`)
                 .then((res) => res.json())
                 .then((data) => setResults(data))
         }
     }
 
     const fetchNext = () => {
-        if (counter >= results.length) {
+        if (results.length < 20) {
             return;
         } else {
             setPageNumber(counter + 1)
-            fetch(`https://api.github.com/repos/cblake35/react-team-project/commits?sha=development&page=${pageNumber}&per_page=9`)
+            fetch(`https://api.github.com/networks/cblake35/react-team-project/events?page=${pageNumber}&per_page=20`)
                 .then((res) => res.json())
                 .then((data) => setResults(data))
         }
@@ -47,25 +47,37 @@ const GitHubCommits = () => {
                 <Row className='commitWrapper'>
                     {console.log(results),
                         results.map(result => {
-                            let myDate = new Date(result.commit.author.date).toLocaleString('en-US', { timezone: 'America/New_York' }).split(',').shift();
+                            let myDate = new Date(result.created_at).toLocaleString('en-US', { timezone: 'America/New_York' }).split(',').shift();
                             return (
-                                <Col xs='6' md='4' lg='2' className='commitCard'>
-                                    <h3>{result.commit.author.name}</h3>
-                                    <p className='commitMsg'>{result.commit.message}</p>
-                                    <p className='commitDate'>{myDate}</p>
-                                </Col>
+                                result.type === 'PushEvent' && result.payload.size === 1 ?
+
+                                    <Col xs='6' md='4' lg='2' className='commitCard'>
+                                        <h3>{result.payload.commits[result.payload.size - 1].author.name}</h3>
+                                        <p className='commitMsg'>{result.payload.commits[result.payload.size - 1].message}</p>
+                                        <p className='commitDate'>{myDate}</p>
+
+                                    </Col>
+
+                                    : result.type === 'PushEvent' && result.payload.size > 1 ?
+
+                                        <Col xs='6' md='4' lg='2' className='commitCard'>
+                                            <h3>{result.payload.commits[result.payload.size - 1].author.name}</h3>
+                                            <p className='commitMsg'>{result.payload.commits[result.payload.size - 1].message}</p>
+                                            <p className='commitDate'>{myDate}</p>
+                                        </Col>
+
+                                        : undefined
                             )
                         })}
                 </Row>
-                {counter <= results.length
-                    ? <Row className='buttonContainer'>
-                        <Col>
-                            <Button onClick={fetchPrevious}>Previous</Button>
-                            <Button onClick={fetchNext}>Next</Button>
-                        </Col>
-                    </Row>
-                    : undefined
-                }
+
+                <Row className='buttonContainer'>
+                    <Col>
+                        <Button onClick={fetchPrevious}>Previous</Button>
+                        <Button onClick={fetchNext}>Next</Button>
+                    </Col>
+                </Row>
+
             </div>
 
 
