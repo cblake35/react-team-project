@@ -12,6 +12,7 @@ import { Route, Link, Switch, } from 'react-router-dom';
 import Home from './Home';
 import GitHubCommits from '../components/GitHubCommits';
 
+
 const MyNavBar = (props) => {
     const [isOpen, setIsOpen] = useState(false);
 

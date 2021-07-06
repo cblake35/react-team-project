@@ -8,6 +8,18 @@ import MyNavBar from './main/Navbar'
 import Footer from './main/Footer'
 
 function App() {
+  const coordinates = [];
+  
+  const componentDidMount = () => {
+    navigator.geolocation.getCurrentPosition(
+      data => {
+        coordinates.push([data.coords.latitude, data.coords.longitude]);
+        window.localStorage.setItem('coordinates', JSON.stringify(coordinates));
+      });
+  }
+
+  componentDidMount();
+
   return (
     <div className="App">
       <Router>
